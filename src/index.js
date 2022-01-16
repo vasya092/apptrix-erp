@@ -4,17 +4,21 @@ import './index.sass';
 import {Provider} from 'react-redux'
 import reportWebVitals from './reportWebVitals';
 import { store } from './store/store';
+import { fetchUsers } from './features/users/usersSlice';
 import {
   BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
+import UserDetails from './components/users/UserDetails/UserDetails';
 import Header from './components/header/Header';
+import UsersList from './components/users/UserList/UserList';
 import Login from './screens/login/Login';
 import Container from '@mui/material/Container'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+store.dispatch(fetchUsers())
 
 ReactDOM.render(
   <React.StrictMode>
@@ -24,7 +28,8 @@ ReactDOM.render(
       <Header/>
         <Container maxWidth="xl" className="app">
           <Routes>
-              <Route path='/' />
+              <Route path='/' element={<UsersList/>} />
+              <Route path='/users/:userId' element={<UserDetails/>}/>
               <Route path='/login' element={<Login/>}/>
           </Routes>
         </Container>

@@ -22,7 +22,7 @@ const Header = () => {
     return (
     <AppBar position="static">
         <Container maxWidth="xl">
-        <Toolbar>
+        <Toolbar className={styles.toolBar}>
             <div className={styles.menuList} >
                 <Link className={styles.menuLink} to="/">
                     Home

@@ -14,6 +14,7 @@ const LoginForm = () => {
 
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
+    const [formError, setFormError] = useState(false)
 
     const notify = () => toast.success("Login success");
     
@@ -29,8 +30,12 @@ const LoginForm = () => {
                 localStorage.setItem('refresh_token', res.data.refresh);
                 setLogin('')
                 setPassword('')
+                setFormError(false)
                 notify()
                 navigate('/') 
+            }).catch(e => {
+                console.log('error '+ e);
+                setFormError(true)
             })
             return response
     }
@@ -45,6 +50,7 @@ const LoginForm = () => {
                 label="Login" 
                 variant="outlined" 
                 margin="dense"
+                error={formError}
                 onChange={onLoginChange}
             />
             <TextField
@@ -53,8 +59,10 @@ const LoginForm = () => {
                 type="password"
                 autoComplete="current-password"
                 margin="normal"
+                error={formError}
                 onChange={onPasswordChange}
             />  
+            {formError ? <span className={styles.errorText}>Invalid login or password</span> : ''}
             <Button variant="contained" margin="normal" size="large" onClick={handleLogin}>Login</Button>
         </div>
     )
