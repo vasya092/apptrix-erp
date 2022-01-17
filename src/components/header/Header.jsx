@@ -27,6 +27,9 @@ const Header = () => {
                 <Link className={styles.menuLink} to="/">
                     Home
                 </Link>
+                <Link className={styles.menuLink} to="/tasks">
+                    Tasks
+                </Link>
                 {!access_token ?
                 <Link className={styles.menuLink} to="/login">
                     Login

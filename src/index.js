@@ -17,8 +17,14 @@ import Login from './screens/login/Login';
 import Container from '@mui/material/Container'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { fetchTasks } from './features/tasks/tasksSlice';
+import Tasks from './screens/tasks/Tasks';
+import { fetchProjects } from './features/projects/projectsSlice';
 
 store.dispatch(fetchUsers())
+store.dispatch(fetchProjects())
+store.dispatch(fetchTasks())
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -30,6 +36,7 @@ ReactDOM.render(
           <Routes>
               <Route path='/' element={<UsersList/>} />
               <Route path='/users/:userId' element={<UserDetails/>}/>
+              <Route path='/tasks' element={<Tasks/>}/>
               <Route path='/login' element={<Login/>}/>
           </Routes>
         </Container>

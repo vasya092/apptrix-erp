@@ -11,7 +11,7 @@ export const fetchUsers = createAsyncThunk('users/  ', async () => {
         'Cache-Control':'no-cache'
     }
 
-    const users = $apiYoutrack.get('/users?fields=id,login,name,email' , {
+    const users = $apiYoutrack.get('/admin/users?fields=id,login,name,email' , {
         headers
     }).then((res) => {
         return res.data

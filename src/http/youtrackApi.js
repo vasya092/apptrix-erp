@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const API_URL = 'https://demo-apptrix.myjetbrains.com/youtrack/api/admin/'
+export const API_URL = 'https://demo-apptrix.myjetbrains.com/youtrack/api/'
 
 const $apiYoutrack = axios.create({
     withCredentials: true,
