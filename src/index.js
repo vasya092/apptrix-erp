@@ -20,10 +20,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { fetchTasks } from './features/tasks/tasksSlice';
 import Tasks from './screens/tasks/Tasks';
 import { fetchProjects } from './features/projects/projectsSlice';
+import { fetchWorkItems } from './features/workItems/workItemsSlice';
+import WorkItem from './screens/workItems/WorkItems';
 
 store.dispatch(fetchUsers())
 store.dispatch(fetchProjects())
 store.dispatch(fetchTasks())
+store.dispatch(fetchWorkItems())
 
 
 ReactDOM.render(
@@ -34,10 +37,11 @@ ReactDOM.render(
       <Header/>
         <Container maxWidth="xl" className="app">
           <Routes>
-              <Route path='/' element={<UsersList/>} />
-              <Route path='/users/:userId' element={<UserDetails/>}/>
-              <Route path='/tasks' element={<Tasks/>}/>
-              <Route path='/login' element={<Login/>}/>
+              <Route exact path='/' element={<UsersList/>} />
+              <Route exact path='/users/:userId' element={<UserDetails/>}/>
+              <Route exact path='/tasks' element={<Tasks/>}/>
+              <Route exact path='/workitem/:taskId' element={<WorkItem/>}/>
+              <Route exact path='/login' element={<Login/>}/>
           </Routes>
         </Container>
       </BrowserRouter>

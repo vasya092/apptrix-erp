@@ -5,22 +5,31 @@ import { selectAllProjects } from '../../../features/projects/projectsSlice';
 import { Autocomplete, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import styles from './TasksList.module.sass'
 import { selectAllTasks, selectTasksByProject, selectTasksByProjectName } from '../../../features/tasks/tasksSlice';
-
-  const columns = [
-    { field: 'id', headerName: 'ID', width: 150 },
-    { field: 'summary', headerName: 'summarry', width: 150 },
-    {
-        field: 'project',
-        headerName: 'Project',
-        width: 150,
-        valueGetter: (params) =>
-          `${params.row.project.name}`,
-      },
-  ];
+import { Link } from 'react-router-dom';
 
 
   const TasksList = () => {
 
+    const columns = [
+        { field: 'id', headerName: 'ID', width: 150 },
+        { field: 'summary', headerName: 'summarry', width: 150 },
+        {
+            field: 'project',
+            headerName: 'Project',
+            width: 150,
+            valueGetter: (params) =>
+            `${params.row.project.name}`,
+        },
+        { field: 'Link', headerName: 'Link', width: 150,
+            renderCell: (params) => (
+                
+                <Link className={styles.menuLink} to={`/workitem/${params.id}`}>
+                    WorkItems
+                </Link>
+            )
+        },
+      ];
+    
     const projects = useSelector(selectAllProjects)
 
     const [selectedProject, setSelectedProject] = useState(0)
@@ -62,6 +71,7 @@ import { selectAllTasks, selectTasksByProject, selectTasksByProjectName } from '
       
     const renderedProjectsSelect = projects.map((item) => (
             <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>
+            
         ))
     return (
             <div className={styles.tasksList}>
@@ -90,8 +100,16 @@ import { selectAllTasks, selectTasksByProject, selectTasksByProjectName } from '
                         />
                     </div>
                 </div>
-              <DataGrid autoHeight={true} autoWidth={true} rows={tasks} columns={columns} 
-                pageSize={20}/>
+              <DataGrid 
+                autoHeight={true} 
+                autoWidth={true} 
+                rows={tasks} 
+                columns={columns} 
+                disableColumnFilter={true}
+                disableColumnMenu={true}
+                disableColumnSelector={true}
+                disableSelectionOnClick={true}
+                pageSize={30}/>
           </div>
       )
   }

@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice, createEntityAdapter } from '@reduxjs/toolkit'
+import {createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import $apiYoutrack from '../../http/youtrackApi'
 
 const initialState = []
@@ -17,7 +17,6 @@ export const fetchTasks = createAsyncThunk('tasks/  ', async () => {
     })
 
     return tasks;
-
     
 })
 
@@ -39,8 +38,9 @@ export const selectTasksByProject = (state, projectId) => state.tasks.filter((ta
 })
 export const selectTasksByProjectName = (tasks, findStr) => tasks.filter((task) => {
         const lowerCase = task.project.name.toLowerCase()
-        if(lowerCase.indexOf(findStr.toLowerCase()) != -1)
+        if(lowerCase.indexOf(findStr.toLowerCase()) !== -1)
         {
             return task
         }
+        else return false
 })
