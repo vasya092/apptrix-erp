@@ -96,7 +96,7 @@ import { Link } from 'react-router-dom';
                             open={open}
                             getOptionLabel={(option) => option.name}
                             sx={{ width: 300 }}
-                            renderInput={(params) => <TextField {...params} placeholder='start writing...g'/>}
+                            renderInput={(params) => <TextField {...params} placeholder='start writing...'/>}
                         />
                     </div>
                 </div>
