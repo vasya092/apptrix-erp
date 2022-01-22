@@ -1,7 +1,6 @@
-import { Container} from "@mui/material";
+import { Button, Container} from "@mui/material";
 import { DataGrid, GridToolbarContainer } from "@mui/x-data-grid";
-import Export from "../exportButton/ExportButton";
-
+import { exportPdfTable } from "../../services/exportPdfTable";
 const WorkItemsTable = (props) => {
     
     const columns = [
@@ -19,12 +18,12 @@ const WorkItemsTable = (props) => {
             valueGetter: (params) => `${params.row.duration.presentation}`
         },
       ];
-      
+
 
     function CustomToolbar() {
         return (
           <GridToolbarContainer>
-              <Export data={props.workItems}/>
+            <Button onClick={() => exportPdfTable(props.workItems)}>Export</Button> 
           </GridToolbarContainer>
         );  
       }
